@@ -1,3 +1,7 @@
+#this additional url.py file within the app links all the links of the app to the rango app
+#it is later referenced by the main project url.py file which calls for all urls from the rango app
+
+
 """tango_with_django_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,12 +17,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+
 from rango import views
 from django.conf.urls import url
+from django.urls import path
 
 urlpatterns = [
-    path(r'', views.index, name='index'),
+    path('index', views.index, name = 'index'),
+    path('about', views.about, name = 'about')
     
 ]

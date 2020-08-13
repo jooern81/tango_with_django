@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rango import views
+from rango import urls
 
 urlpatterns = [
-    path(r'', views.index, name='index'),
-    path(r'rango/',include('rango.urls')),      #this takes all the urls from the app rango and includes it as a reference url
+    path('rango/', include('rango.urls')),      #this takes all the urls from the app rango and includes it as a reference url
     path('admin/', admin.site.urls)
     
 ]
+
+
