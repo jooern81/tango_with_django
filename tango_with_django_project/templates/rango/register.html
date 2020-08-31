@@ -1,0 +1,30 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block title_block %}
+REGISTER
+{% endblock %}
+
+{% block body_block %}
+<body style= "text-align:left; background-color: plum">
+<h1> REGISTER FOR MY FRUIT GANG</h1>
+    {% if registered %}
+        CHENGYUN SAYS: <strong> WELCOME TO MY FRUIT EMPIRE! BUY MORE FRUITS!</strong><br />
+        <a href="{% url 'rango:index' %}"> RETURN TO HOMEPAGE</a><br />
+
+    {% else %}
+        CHENGYUN SAYS: <strong> REGISTER FOR MY FRUIT GANG HERE!</strong>
+        <form id="user_form" method="post" action="{% url 'rango:register' %}"
+        enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ user_form.as_p}} 
+        {{ profile_form.as_p}}
+
+        <input type="submit" name="submit" value="Register" />
+        </form>
+
+    {% endif %}
+{% endblock %}
+

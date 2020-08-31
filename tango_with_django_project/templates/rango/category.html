@@ -1,0 +1,62 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    {{ category.name }}
+{% endblock %}
+
+{% block body_block %}
+    {% if category %}
+    <h1>{{category.name}} PAGES</h1>
+    {% if pages %}
+    <ul>
+        {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+        <br/><a href="{% url 'rango:add_page' category.slug %}">Add Page</a> 
+    </ul>
+    {% else %}
+    <strong> No pages currently in this category.</strong><br/>
+    <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> 
+    {% endif %}
+    {% else %}
+    The specified category does not exist!
+    {% endif %}
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <title>RANGO</title>
+</head>
+
+
+</html>
+<body style= "text-align:center; background-color: #33FFFF">
+
+    <div>
+        {% if category %}
+        <h1>{{category.name}}</h1>
+        {% if pages %}
+        <ul>
+            {% for page in pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+            <br/><a href="/rango/category/{{category.slug}}/add_page">Add Page</a> 
+        </ul>
+        {% else %}
+        <strong> No pages currently in this category.</strong><br/>
+        <a href="/rango/category/{{category.slug}}/add_page">Add Page</a> 
+        {% endif %}
+        {% else %}
+        The specified category does not exist!
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="/rango/about">ABOUT</a><br />
+    </div>
+</body>
+</html> -->

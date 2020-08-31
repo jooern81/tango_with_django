@@ -1,0 +1,133 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block title_block %}
+ADD A PAGE
+{% endblock %}
+
+{% block body_block %}
+<body style= "text-align:center; background-color: #33FFFF">
+    <h1>CHENG YUN says...</h1>
+    <div>
+        HEY THERE 
+        <br />
+        <strong>{{ boldmessage}} </strong>
+        <br />
+    </div>
+
+    <div>
+        <img class='img-circle' src="{% static "images/hocy.jpg" %}"
+        alt = "Farmer Ho"/>
+    </div>
+
+    <div>
+        <img src="{% static "images/grapes.jpg" %}"
+        alt = "Farmer Ho's Grapes"/>
+    </div>
+
+    <br />
+    <h1>TOP CATEGORIES</h1>
+    <div>
+        {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li>
+                <a href="{% url 'rango:show_category' category.slug %}"> {{ category.name }} </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong> There are no categories present.</strong>
+        {% endif %}
+    </div>
+
+    <br />
+    <h1>TOP PAGES</h1>
+    <div>
+        {% if pages %}
+        <ul>
+            {% for page in pages %}
+            <li>
+                <a href="{{ page.url }}"> {{ page.title }} </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong> There are no pages present.</strong>
+        {% endif %}
+    </div>
+
+</body>
+{% endblock %}
+
+<!-- 
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <title>RANGO</title>
+</head>
+</html>
+<body style= "text-align:center; background-color: #33FFFF">
+    <h1>CHENG YUN says...</h1>
+    <div>
+        HEY THERE 
+        <br />
+        <strong>{{ boldmessage}} </strong>
+        <br />
+    </div>
+
+    <div>
+        <img class='img-circle' src="{% static "images/hocy.jpg" %}"
+        alt = "Farmer Ho"/>
+    </div>
+
+    <div>
+        <img src="{% static "images/grapes.jpg" %}"
+        alt = "Farmer Ho's Grapes"/>
+    </div>
+
+    <br />
+    <h1>TOP CATEGORIES</h1>
+    <div>
+        {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li>
+                <a href="/rango/category/{{ category.slug }}"> {{ category.name }} </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong> There are no categories present.</strong>
+        {% endif %}
+    </div>
+
+    <br />
+    <h1>TOP PAGES</h1>
+    <div>
+        {% if pages %}
+        <ul>
+            {% for page in pages %}
+            <li>
+                <a href="{{ page.url }}"> {{ page.title }} </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong> There are no pages present.</strong>
+        {% endif %}
+    </div>
+
+    <br />
+    <h1>ADD CATEGORY</h1>
+    <a href="/rango/add_category"> ADD A NEW CATEGORY HERE </a>
+    
+    <br />
+    <div>
+        <a href="/rango/about">ABOUT</a><br />
+    </div>
+</body>
+</html> -->

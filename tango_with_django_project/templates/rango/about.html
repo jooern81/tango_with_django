@@ -1,0 +1,79 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block title_block %}
+ABOUT FARMER HO
+{% endblock %}
+
+{% block body_block %}
+<body style= "text-align:center; background-color: #33FFFF">
+<h1>HI I'M FARMER HO</h1>
+
+<div>
+    <img class='img-circle' src="{% static "images/hocy.jpg" %}"
+    alt = "Farmer Ho"/>
+</div>
+
+<div>
+    <br />
+    <strong>{{ boldmessage}} </strong>
+    <br />
+    <h2>My fruits are nice.</h2>
+</div>
+
+<div>
+    <img class='img-circle' src="{% static "images/rockmelon.jpg" %}"
+    alt = "Farmer Ho's Rockmelons"/>
+</div>
+
+<div>
+    <img src="{% static "images/grapes.jpg" %}"
+    alt = "Farmer Ho's Grapes"/>
+</div>
+
+<div>
+    <img src="{{ MEDIA_URL }}cat.jpg"
+    alt = "Farmer Ho's Cat"/>
+</div>
+</body>
+{% endblock %}
+
+<!-- 
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <title>RANGO</title>
+</head>
+</html>
+<body style= "text-align:center; background-color: #33FFFF">
+    <h1>THESE ARE MY FRUITS</h1>
+    <div>
+        <br />
+        <strong>{{ boldmessage}} </strong>
+        <br />
+        My fruits are nice.
+    </div>
+
+    <div>
+        <img class='img-circle' src="{% static "images/rockmelon.jpg" %}"
+        alt = "Farmer Ho's Rockmelons"/>
+    </div>
+
+    <div>
+        <img src="{% static "images/grapes.jpg" %}"
+        alt = "Farmer Ho's Grapes"/>
+    </div>
+
+    <div>
+        <img src="{{ MEDIA_URL }}cat.jpg"
+        alt = "Farmer Ho's Cat"/>
+    </div>
+
+    <div>
+        <a href='index'> INDEX </a>
+    </div>
+</body>
+</html> -->

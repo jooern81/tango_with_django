@@ -18,12 +18,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from rango import views
 from django.conf.urls import url
-from django.urls import path
+from django.contrib import admin
+from django.conf.urls import include
+from django.urls import path,re_path
+from rango import views
+from rango import urls
+from django.conf import settings
+from django.conf.urls.static import static
+
+app_name = 'rango'
 
 urlpatterns = [
     path('index', views.index, name = 'index'),
-    path('about', views.about, name = 'about')
-    
-]
+    path('about', views.about, name = 'about'),
+    path('add_category', views.add_category, name='add_category'),
+    path('add_page', views.add_page, name='add_page'),
+    path('register', views.register, name='register'),
+    re_path(r'^category/(?P<category_name_slug>[\w\-]+)/$',views.show_category, name='show_category'),
+    re_path(r'^category/(?P<category_name_slug>[\w\-]+)/add_page$',views.add_page, name='add_page'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
