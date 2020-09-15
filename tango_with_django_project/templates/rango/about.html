@@ -6,13 +6,19 @@ ABOUT FARMER HO
 {% endblock %}
 
 {% block body_block %}
-<body style= "text-align:center; background-color: #33FFFF">
+<body>
 <h1>HI I'M FARMER HO</h1>
+<h2> YOU HAVE VISITED MY SITE {{ visits }} TIMES. GOOD!</h2>
+
+
+
 
 <div>
     <img class='img-circle' src="{% static "images/hocy.jpg" %}"
     alt = "Farmer Ho"/>
 </div>
+<button class="btn btn-primary" id="about-btn">
+    FREE VOUCHERS :)</button>
 
 <div>
     <br />

@@ -1,0 +1,13 @@
+/* The bodyblock */
+.bodyblock {
+  text-align: center;
+  list-style-type: none;
+  margin-left: 15%;
+  height: auto; /* Full-height: remove this if you want "auto" height */
+  width: 85%; /* Set the width of the body */
+  position: relative; /* Move with scroll */
+  background-color: rgb(161, 228, 228);
+}
+  
+
+

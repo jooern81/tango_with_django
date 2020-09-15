@@ -1,9 +1,17 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','tango_with_django_project.settings')
 
+import pandas as pd
+import numpy as np
+
 import django
 django.setup()
-from rango.models import Category,Page
+from rango.models import Category,Page, DemandForecast
+
+def add_demandforecast(name,demand=0):     #build it such that can populate multiple tables from different csv files
+    d = DemandForecast.objects.update_or_create(name=name)[0]
+    d.demand = demand
+    d.save()
 
 def add_page(cat, title, url, views=0, likes=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0] #creates an instance if it doesn't already exist
@@ -56,6 +64,17 @@ def populate():
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
+
+# Import demand_forecast.csv data
+    df = pd.read_csv("demand_forecast.csv")
+    demand_list = df['Initial Demand']
+    product = df['Product']
+
+# Iterate through the csv data and insert all the entries based on the length of the csv dataframe
+    for entry in range(0, len(demand_list)):
+        d = add_demandforecast(product[entry],demand_list[entry]) #this must match the functions input sequence
+
+
 
 
 

@@ -44,18 +44,9 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class UserProfileForm(forms.ModelForm):
-
-    def clean(self):
-
-        cleaned_data = self.cleaned_data
-        url = cleaned_data.get('website')
-        # If url is not empty and doesn't start with 'http://', prepend 'http://'.
-        if url and not url.startswith('http://'):
-            url = 'http://' + url
-            cleaned_data['website'] = url
-            return cleaned_data
-            
+    website = forms.URLField(required=False)
+    picture = forms.ImageField(required=False)
+    
     class Meta:
         model = UserProfile
-        fields = ('website' , 'picture')
-
+        exclude = ('user',)

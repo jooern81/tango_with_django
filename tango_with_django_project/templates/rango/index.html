@@ -2,62 +2,69 @@
 {% load static %}
 
 {% block title_block %}
-ADD A PAGE
+HOMEPAGE
 {% endblock %}
 
 {% block body_block %}
-<body style= "text-align:center; background-color: #33FFFF">
-    <h1>CHENG YUN says...</h1>
-    <div>
-        HEY THERE 
-        <br />
-        <strong>{{ boldmessage}} </strong>
-        <br />
-    </div>
 
-    <div>
-        <img class='img-circle' src="{% static "images/hocy.jpg" %}"
-        alt = "Farmer Ho"/>
-    </div>
+<div class="jumbotron">
+    <h1>FARMER HO WELCOMES YOU</h1>
+    {% if user.is_authenticated %}
+    <h1>HEY THERE {{ user.username }}!</h1>
+    {% else %}
+    <h1>HEY THERE FRUITCAKE!</h1>
+    {% endif %} 
 
-    <div>
+    <h1>YOU HAVE VISITED MY FARM: {{ visits }} TIMES</h1>
+
+    <br />
+
+    <strong>{{ boldmessage }} </strong>
+
+    <p>
         <img src="{% static "images/grapes.jpg" %}"
         alt = "Farmer Ho's Grapes"/>
+    </p>
+</div>
+
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4>TOP CATEGORIES</h4>
+        <p>
+            {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'rango:show_category' category.slug %}"> {{ category.name }} </a>
+                         </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong> There are no categories present.</strong>
+            {% endif %}
+        </p>
     </div>
 
-    <br />
-    <h1>TOP CATEGORIES</h1>
-    <div>
-        {% if categories %}
-        <ul>
-            {% for category in categories %}
-            <li>
-                <a href="{% url 'rango:show_category' category.slug %}"> {{ category.name }} </a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <strong> There are no categories present.</strong>
-        {% endif %}
+    <div class="col-lg-6">
+        <h4>TOP PAGES</h4>
+            <p>
+            {% if pages %}
+                <ul>
+                    {% for page in pages %}
+                        <li>
+                            <a href="{{ page.url }}"> {{ page.title }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong> There are no pages present.</strong>
+            {% endif %}
+            </p>
     </div>
+</div>
 
-    <br />
-    <h1>TOP PAGES</h1>
-    <div>
-        {% if pages %}
-        <ul>
-            {% for page in pages %}
-            <li>
-                <a href="{{ page.url }}"> {{ page.title }} </a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <strong> There are no pages present.</strong>
-        {% endif %}
-    </div>
+<img class='img-circle' src="{% static 'images/hocy.jpg' %}" alt="Farmer Ho"/>
 
-</body>
 {% endblock %}
 
 <!-- 

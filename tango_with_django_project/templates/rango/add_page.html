@@ -6,67 +6,24 @@ ADD A PAGE
 {% endblock %}
 
 {% block body_block %}
-<body style= "text-align:left; background-color: palegoldenrod">
-
     {% if category %}
-
-    <h1>ADD A PAGE</h1>
-    <div>
-        <form id='page_form', method="post",action="{% url 'rango:add_page' category.slug %}">
+        <form role="form" id="page_form" method="post"action="/rango/category/{{category.slug}}/add_page">
+            <h2 class="form-signin-heading"> Add a Page to<a href="/rango/category/{{category.slug}}/">
+            {{ category.name }}</a></h2>
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
             {% for field in form.visible_fields %}
                 {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-            <input type="submit" name="submit" value="Create Page"/>
+                {{ field.help_text }}<br/>
+                {{ field }}<br/>
+                {% endfor %}
+            <br/>
+        <button class="btn btn-primary"type="submit" name="submit">Add Page</button>
         </form>
-    </div>
-
-    {% else %} A CATEGORY OF THIS NAME DOES NOT EXIST 
+    {% else %}
+        <p>This is category does not exist.</p>
     {% endif %}
-
-</body>
 {% endblock %}
 
-<!-- 
-<!DOCTYPE html>
-
-<html>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<head>
-    <title>RANGO</title>
-</head>
-</html>
-<body style= "text-align:left; background-color: palegoldenrod">
-
-    {% if category %}
-
-    <h1>ADD A PAGE</h1>
-    <div>
-        <form id='page_form', method="post",action="/rango/category/{{ category.slug }}/add_page">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-            <input type="submit" name="submit" value="Create Page"/>
-        </form>
-    </div>
-
-    <div>
-        <a href="/rango/about">ABOUT</a><br />
-    </div>
-
-    {% else %} A CATEGORY OF THIS NAME DOES NOT EXIST 
-    {% endif %}
-
-</body>
-</html> -->

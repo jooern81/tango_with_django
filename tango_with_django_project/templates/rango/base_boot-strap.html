@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 {% load static %}
 {% load rango_template_tags %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="{% static "js/rango-jquery.js" %}"></script>
 
 <html>
 <head lang="en">
-
     <link rel="stylesheet"  href="{%  static  'css/sidenav.css'  %}">
     <link rel="stylesheet"  href="{%  static  'css/bodyblock.css'  %}">
     <link rel="stylesheet"  href="{%  static  'css/bottomblock.css'  %}">
@@ -41,7 +38,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-<a class="navbar-brand" href="{% url 'rango:index' %}">UNCLE HO'S FRUITS</a>
+<a class="navbar-brand" href="{% url 'index' %}">UNCLE HO'S FRUITS</a>
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -54,19 +51,11 @@
 
     {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'rango:profile' user.username%}">Profile</a>
-        </li>
-        
-        <li class="nav-item">
             <a class="nav-link" href="{% url 'rango:restricted' %}">Restricted Page</a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{% url 'rango:add_category' %}">Add a New Category</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'rango:list_profiles' %}">List Profiles</a>
         </li>
 
         <li class="nav-item">
@@ -112,10 +101,64 @@
     src=
     "http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js">
     </script>
-    <!-- Rango Ajax -->
-    <script
-    src=
-    "{% static "js/rango-ajax.js" %}"> 
-    </script>
     </body>
     </html>
+
+
+
+    
+<!--ORIGINAL BASE CODE WITHOUT BOOTSTRAP <!DOCTYPE html>
+{% load static %}
+{% load rango_template_tags %}
+
+<html>
+    <head lang="en">
+    <link rel="stylesheet"  href="{%  static  'css/sidenav.css'  %}">
+    <link rel="stylesheet"  href="{%  static  'css/bodyblock.css'  %}">
+    <link rel="stylesheet"  href="{%  static  'css/bottomblock.css'  %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <title>
+        {% block title_block %}
+        DEFAULT TITLE
+        {% endblock %}
+    </title>
+    </head>
+
+<body>
+<div class = "container-fluid">
+    <div class = "row">
+        <div class = "col-md-2">
+            {% block sidebar_block %}
+                {% get_category_list %} 
+            {% endblock %}
+        </div>
+
+        <div class = "col-md-10">
+            {% block body_block %}
+            {% endblock %}
+        </div>       
+    </div>
+
+    <hr />
+    <div class="row justify-content-center">
+        <ul class="list-group list-group-horizontal">
+                {% if user.is_authenticated %}
+                <li class="list-group-item"><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
+                <li class="list-group-item"><a href="{% url 'rango:restricted' %}">Restricted Page</a></li>
+                <li class="list-group-item"><a href="{% url 'password_change' %}">Change Password</a></li>
+                <li class="list-group-item"><a href="{% url 'logout' %}?next=/rango/index">Logout</a></li>
+
+                {% else %}
+                <li class="list-group-item"><a href="{% url 'login' %}">Sign In</a></li>
+                <li class="list-group-item"><a href="{% url 'django_registration_register' %}">Sign Up</a></li>
+                {% endif %}
+                <li class="list-group-item"><a href="{% url 'rango:about' %}">About</a></li>
+                <li class="list-group-item"><a href="{% url 'rango:index' %}">Index</a></li>
+            </ul>
+    </div>
+</div>
+</body>
+
+</html>
+ -->

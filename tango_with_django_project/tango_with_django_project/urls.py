@@ -17,15 +17,25 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
-from django.urls import path,re_path
+from django.urls import include, path,re_path
 from rango import views
 from rango import urls
 from django.conf import settings
 from django.conf.urls.static import static
+from django_registration.backends.one_step.views import RegistrationView
+
+class RangoRegistrationView(RegistrationView):
+    def get_success_url(self,user):
+        return "/rango/register_profile"
 
 urlpatterns = [
     path('rango/', include('rango.urls')),      #this takes all the urls from the app rango and includes it as a reference url
     path('admin/', admin.site.urls),
+    path('accounts/register/',RangoRegistrationView.as_view(success_url='/rango/register_profile'),name='django_registration_register'),
+    path('accounts/', include('django_registration.backends.one_step.urls')), #links referenced to the package {% url 'django_registration_register' %}
+    path('accounts/', include('django.contrib.auth.urls')), #links referenced directly "{% url 'login' %}"
+    
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
